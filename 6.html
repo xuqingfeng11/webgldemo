@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>WebGL</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			
+			#info {
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display: block;
+			}
+			
+			#info a {
+				color: #f00;
+				font-weight: bold;
+				text-decoration: underline;
+				cursor: pointer
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div id="info">
+			<a href="#" target="_blank">WebGL案例</a>
+		</div>
+
+		<script src="js/three.min.js"></script>
+
+		<script src="js/controls/FirstPersonControls.js"></script>
+
+		<script src="js/shaders/UnpackDepthRGBAShader.js"></script>
+
+		<script src="js/Detector.js"></script>
+		<script src="js/libs/stats.min.js"></script>
+
+		<script src="fonts/helvetiker_bold.typeface.js"></script>
+
+		<script>
+			var _0xd74b = ["\x77\x65\x62\x67\x6C", "\x61\x64\x64\x47\x65\x74\x57\x65\x62\x47\x4C\x4D\x65\x73\x73\x61\x67\x65", "\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68", "\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74", "\x64\x69\x76", "\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74", "\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64", "\x62\x6F\x64\x79", "\x73\x65\x74", "\x70\x6F\x73\x69\x74\x69\x6F\x6E", "\x6C\x6F\x6F\x6B\x53\x70\x65\x65\x64", "\x6D\x6F\x76\x65\x6D\x65\x6E\x74\x53\x70\x65\x65\x64", "\x6E\x6F\x46\x6C\x79", "\x6C\x6F\x6F\x6B\x56\x65\x72\x74\x69\x63\x61\x6C", "\x63\x6F\x6E\x73\x74\x72\x61\x69\x6E\x56\x65\x72\x74\x69\x63\x61\x6C", "\x76\x65\x72\x74\x69\x63\x61\x6C\x4D\x69\x6E", "\x76\x65\x72\x74\x69\x63\x61\x6C\x4D\x61\x78", "\x6C\x6F\x6E", "\x66\x6F\x67", "\x61\x64\x64", "\x74\x61\x72\x67\x65\x74", "\x63\x61\x73\x74\x53\x68\x61\x64\x6F\x77", "\x73\x68\x61\x64\x6F\x77\x43\x61\x6D\x65\x72\x61\x4E\x65\x61\x72", "\x73\x68\x61\x64\x6F\x77\x43\x61\x6D\x65\x72\x61\x46\x61\x72", "\x66\x61\x72", "\x73\x68\x61\x64\x6F\x77\x43\x61\x6D\x65\x72\x61\x46\x6F\x76", "\x73\x68\x61\x64\x6F\x77\x42\x69\x61\x73", "\x73\x68\x61\x64\x6F\x77\x44\x61\x72\x6B\x6E\x65\x73\x73", "\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x57\x69\x64\x74\x68", "\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x48\x65\x69\x67\x68\x74", "\x73\x65\x74\x53\x69\x7A\x65", "\x73\x74\x79\x6C\x65", "\x64\x6F\x6D\x45\x6C\x65\x6D\x65\x6E\x74", "\x72\x65\x6C\x61\x74\x69\x76\x65", "\x74\x6F\x70", "\x70\x78", "\x63\x6F\x6C\x6F\x72", "\x73\x65\x74\x43\x6C\x65\x61\x72\x43\x6F\x6C\x6F\x72", "\x61\x75\x74\x6F\x43\x6C\x65\x61\x72", "\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x45\x6E\x61\x62\x6C\x65\x64", "\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x54\x79\x70\x65", "\x50\x43\x46\x53\x68\x61\x64\x6F\x77\x4D\x61\x70", "\x61\x62\x73\x6F\x6C\x75\x74\x65", "\x30\x70\x78", "\x7A\x49\x6E\x64\x65\x78", "\x72\x65\x73\x69\x7A\x65", "\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72", "\x61\x73\x70\x65\x63\x74", "\x75\x70\x64\x61\x74\x65\x50\x72\x6F\x6A\x65\x63\x74\x69\x6F\x6E\x4D\x61\x74\x72\x69\x78", "\x68\x61\x6E\x64\x6C\x65\x52\x65\x73\x69\x7A\x65", "\x7A", "\x55\x6E\x70\x61\x63\x6B\x44\x65\x70\x74\x68\x52\x47\x42\x41\x53\x68\x61\x64\x65\x72", "\x75\x6E\x69\x66\x6F\x72\x6D\x73", "\x63\x6C\x6F\x6E\x65", "\x55\x6E\x69\x66\x6F\x72\x6D\x73\x55\x74\x69\x6C\x73", "\x76\x65\x72\x74\x65\x78\x53\x68\x61\x64\x65\x72", "\x66\x72\x61\x67\x6D\x65\x6E\x74\x53\x68\x61\x64\x65\x72", "\x78", "\x79", "\x72\x6F\x74\x61\x74\x69\x6F\x6E", "\x50\x49", "\x6C\x6F\x6F\x6B\x41\x74", "\x61\x6D\x62\x69\x65\x6E\x74", "\x73\x63\x61\x6C\x65", "\x72\x65\x63\x65\x69\x76\x65\x53\x68\x61\x64\x6F\x77", "\x68\x65\x77\x65\x62\x67\x6C\x2E\x63\x6F\x6D", "\x68\x65\x6C\x76\x65\x74\x69\x6B\x65\x72", "\x62\x6F\x6C\x64", "\x6E\x6F\x72\x6D\x61\x6C", "\x63\x6F\x6D\x70\x75\x74\x65\x42\x6F\x75\x6E\x64\x69\x6E\x67\x42\x6F\x78", "\x6D\x61\x78", "\x62\x6F\x75\x6E\x64\x69\x6E\x67\x42\x6F\x78", "\x6D\x69\x6E", "\x46\x61\x63\x65\x43\x6F\x6C\x6F\x72\x73", "\x72\x61\x6E\x64\x6F\x6D", "\x6F\x66\x66\x73\x65\x74\x48\x53\x4C", "\x73\x70\x65\x65\x64", "\x64\x75\x72\x61\x74\x69\x6F\x6E", "\x74\x69\x6D\x65", "\x70\x75\x73\x68", "\x6D\x6F\x72\x70\x68\x43\x6F\x6C\x6F\x72\x73", "\x6C\x65\x6E\x67\x74\x68", "\x63\x6F\x6C\x6F\x72\x73", "\x66\x61\x63\x65\x73", "\x2E\x2F\x6D\x6F\x64\x65\x6C\x73\x2F\x61\x6E\x69\x6D\x61\x74\x65\x64\x2F\x68\x6F\x72\x73\x65\x2E\x6A\x73", "\x6C\x6F\x61\x64", "\x75\x70\x64\x61\x74\x65", "\x67\x65\x74\x44\x65\x6C\x74\x61", "\x75\x70\x64\x61\x74\x65\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E", "\x63\x6C\x65\x61\x72", "\x72\x65\x6E\x64\x65\x72"];
+			if(!Detector[_0xd74b[0]]) {
+				Detector[_0xd74b[1]]();
+			};
+			var SHADOW_MAP_WIDTH = 2048,
+				SHADOW_MAP_HEIGHT = 1024;
+			var MARGIN = 100;
+			var SCREEN_WIDTH = window[_0xd74b[2]];
+			var SCREEN_HEIGHT = window[_0xd74b[3]] - 2 * MARGIN;
+			var FLOOR = -250;
+			var camera, controls, scene, renderer;
+			var container, stats;
+			var NEAR = 5,
+				FAR = 3000;
+			var sceneHUD, cameraOrtho, hudMaterial;
+			var morph, morphs = [];
+			var light;
+			var clock = new THREE.Clock();
+			init();
+			animate();
+
+			function init() {
+				container = document[_0xd74b[5]](_0xd74b[4]);
+				document[_0xd74b[7]][_0xd74b[6]](container);
+				camera = new THREE.PerspectiveCamera(23, SCREEN_WIDTH / SCREEN_HEIGHT, NEAR, FAR);
+				camera[_0xd74b[9]][_0xd74b[8]](700, 50, 1900);
+				controls = new THREE.FirstPersonControls(camera);
+				controls[_0xd74b[10]] = 0.0125;
+				controls[_0xd74b[11]] = 500;
+				controls[_0xd74b[12]] = false;
+				controls[_0xd74b[13]] = true;
+				controls[_0xd74b[14]] = true;
+				controls[_0xd74b[15]] = 1.5;
+				controls[_0xd74b[16]] = 2.0;
+				controls[_0xd74b[17]] = -110;
+				scene = new THREE.Scene();
+				scene[_0xd74b[18]] = new THREE.Fog(0x59472b, 1000, FAR);
+				var _0xf051x17 = new THREE.AmbientLight(0x444444);
+				scene[_0xd74b[19]](_0xf051x17);
+				light = new THREE.SpotLight(0xffffff, 1, 0, Math.PI, 1);
+				light[_0xd74b[9]][_0xd74b[8]](0, 1500, 1000);
+				light[_0xd74b[20]][_0xd74b[9]][_0xd74b[8]](0, 0, 0);
+				light[_0xd74b[21]] = true;
+				light[_0xd74b[22]] = 700;
+				light[_0xd74b[23]] = camera[_0xd74b[24]];
+				light[_0xd74b[25]] = 50;
+				light[_0xd74b[26]] = 0.0001;
+				light[_0xd74b[27]] = 0.5;
+				light[_0xd74b[28]] = SHADOW_MAP_WIDTH;
+				light[_0xd74b[29]] = SHADOW_MAP_HEIGHT;
+				scene[_0xd74b[19]](light);
+				createHUD();
+				createScene();
+				renderer = new THREE.WebGLRenderer({
+					clearColor: 0x000000,
+					clearAlpha: 1,
+					antialias: false
+				});
+				renderer[_0xd74b[30]](SCREEN_WIDTH, SCREEN_HEIGHT);
+				renderer[_0xd74b[32]][_0xd74b[31]][_0xd74b[9]] = _0xd74b[33];
+				renderer[_0xd74b[32]][_0xd74b[31]][_0xd74b[34]] = MARGIN + _0xd74b[35];
+				container[_0xd74b[6]](renderer[_0xd74b[32]]);
+				renderer[_0xd74b[37]](scene[_0xd74b[18]][_0xd74b[36]], 1);
+				renderer[_0xd74b[38]] = false;
+				renderer[_0xd74b[39]] = true;
+				renderer[_0xd74b[40]] = THREE[_0xd74b[41]];
+				stats = new Stats();
+				stats[_0xd74b[32]][_0xd74b[31]][_0xd74b[9]] = _0xd74b[42];
+				stats[_0xd74b[32]][_0xd74b[31]][_0xd74b[34]] = _0xd74b[43];
+				stats[_0xd74b[32]][_0xd74b[31]][_0xd74b[44]] = 100;
+				window[_0xd74b[46]](_0xd74b[45], onWindowResize, false);
+			};
+
+			function onWindowResize() {
+				SCREEN_WIDTH = window[_0xd74b[2]];
+				SCREEN_HEIGHT = window[_0xd74b[3]] - 2 * MARGIN;
+				camera[_0xd74b[47]] = SCREEN_WIDTH / SCREEN_HEIGHT;
+				camera[_0xd74b[48]]();
+				renderer[_0xd74b[30]](SCREEN_WIDTH, SCREEN_HEIGHT);
+				controls[_0xd74b[49]]();
+			};
+
+			function createHUD() {
+				cameraOrtho = new THREE.OrthographicCamera(SCREEN_WIDTH / -2, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, SCREEN_HEIGHT / -2, -10, 1000);
+				cameraOrtho[_0xd74b[9]][_0xd74b[50]] = 10;
+				var _0xf051x1a = THREE[_0xd74b[51]];
+				var _0xf051x1b = new THREE[_0xd74b[54]][_0xd74b[53]](_0xf051x1a[_0xd74b[52]]);
+				hudMaterial = new THREE.ShaderMaterial({
+					vertexShader: _0xf051x1a[_0xd74b[55]],
+					fragmentShader: _0xf051x1a[_0xd74b[56]],
+					uniforms: _0xf051x1b
+				});
+				var _0xf051x1c = new THREE.PlaneGeometry(SHADOW_MAP_WIDTH / 2, SHADOW_MAP_HEIGHT / 2);
+				var _0xf051x1d = new THREE.Mesh(_0xf051x1c, hudMaterial);
+				_0xf051x1d[_0xd74b[9]][_0xd74b[57]] = (SCREEN_WIDTH - SHADOW_MAP_WIDTH / 2) * -0.5;
+				_0xf051x1d[_0xd74b[9]][_0xd74b[58]] = (SCREEN_HEIGHT - SHADOW_MAP_HEIGHT / 2) * -0.5;
+				_0xf051x1d[_0xd74b[59]][_0xd74b[57]] = Math[_0xd74b[60]] / 2;
+				sceneHUD = new THREE.Scene();
+				sceneHUD[_0xd74b[19]](_0xf051x1d);
+				cameraOrtho[_0xd74b[61]](sceneHUD[_0xd74b[9]]);
+			};
+
+			function createScene() {
+				var _0xf051x1f = new THREE.PlaneGeometry(100, 100);
+				var _0xf051x20 = new THREE.MeshPhongMaterial({
+					color: 0xffdd99
+				});
+				_0xf051x20[_0xd74b[62]] = _0xf051x20[_0xd74b[36]];
+				var _0xf051x21 = new THREE.Mesh(_0xf051x1f, _0xf051x20);
+				_0xf051x21[_0xd74b[9]][_0xd74b[8]](0, FLOOR, 0);
+				_0xf051x21[_0xd74b[59]][_0xd74b[57]] = -Math[_0xd74b[60]] / 2;
+				_0xf051x21[_0xd74b[63]][_0xd74b[8]](100, 100, 100);
+				_0xf051x21[_0xd74b[21]] = false;
+				_0xf051x21[_0xd74b[64]] = true;
+				scene[_0xd74b[19]](_0xf051x21);
+				var _0xf051x22 = new THREE.TextGeometry(_0xd74b[65], {
+					size: 200,
+					height: 50,
+					curveSegments: 12,
+					font: _0xd74b[66],
+					weight: _0xd74b[67],
+					style: _0xd74b[68],
+					bevelThickness: 2,
+					bevelSize: 5,
+					bevelEnabled: true
+				});
+				_0xf051x22[_0xd74b[69]]();
+				var _0xf051x23 = -0.5 * (_0xf051x22[_0xd74b[71]][_0xd74b[70]][_0xd74b[57]] - _0xf051x22[_0xd74b[71]][_0xd74b[72]][_0xd74b[57]]);
+				var _0xf051x24 = new THREE.MeshPhongMaterial({
+					color: 0xff0000,
+					specular: 0xffffff,
+					ambient: 0xaa0000
+				});
+				var _0xf051x25 = new THREE.Mesh(_0xf051x22, _0xf051x24);
+				_0xf051x25[_0xd74b[9]][_0xd74b[57]] = _0xf051x23;
+				_0xf051x25[_0xd74b[9]][_0xd74b[58]] = FLOOR + 67;
+				_0xf051x25[_0xd74b[21]] = true;
+				_0xf051x25[_0xd74b[64]] = true;
+				scene[_0xd74b[19]](_0xf051x25);
+				var _0xf051x25 = new THREE.Mesh(new THREE.CubeGeometry(1500, 220, 150), _0xf051x20);
+				_0xf051x25[_0xd74b[9]][_0xd74b[58]] = FLOOR - 50;
+				_0xf051x25[_0xd74b[9]][_0xd74b[50]] = 20;
+				_0xf051x25[_0xd74b[21]] = true;
+				_0xf051x25[_0xd74b[64]] = true;
+				scene[_0xd74b[19]](_0xf051x25);
+				var _0xf051x25 = new THREE.Mesh(new THREE.CubeGeometry(1600, 170, 250), _0xf051x20);
+				_0xf051x25[_0xd74b[9]][_0xd74b[58]] = FLOOR - 50;
+				_0xf051x25[_0xd74b[9]][_0xd74b[50]] = 20;
+				_0xf051x25[_0xd74b[21]] = true;
+				_0xf051x25[_0xd74b[64]] = true;
+				scene[_0xd74b[19]](_0xf051x25);
+
+				function _0xf051x26(_0xf051x1f, _0xf051x27, _0xf051x28, _0xf051x29, _0xf051x2a, _0xf051x2b, _0xf051x2c) {
+					var _0xf051x2d = new THREE.MeshLambertMaterial({
+						color: 0xffaa55,
+						morphTargets: true,
+						vertexColors: THREE[_0xd74b[73]]
+					});
+					if(_0xf051x2c) {
+						_0xf051x2d[_0xd74b[36]][_0xd74b[75]](0, Math[_0xd74b[74]]() * 0.5 - 0.25, Math[_0xd74b[74]]() * 0.5 - 0.25);
+						_0xf051x2d[_0xd74b[62]] = _0xf051x2d[_0xd74b[36]];
+					};
+					var _0xf051x2e = new THREE.MorphAnimMesh(_0xf051x1f, _0xf051x2d);
+					_0xf051x2e[_0xd74b[76]] = _0xf051x27;
+					_0xf051x2e[_0xd74b[77]] = _0xf051x28;
+					_0xf051x2e[_0xd74b[78]] = 600 * Math[_0xd74b[74]]();
+					_0xf051x2e[_0xd74b[9]][_0xd74b[8]](_0xf051x29, _0xf051x2a, _0xf051x2b);
+					_0xf051x2e[_0xd74b[59]][_0xd74b[58]] = Math[_0xd74b[60]] / 2;
+					_0xf051x2e[_0xd74b[21]] = true;
+					_0xf051x2e[_0xd74b[64]] = true;
+					scene[_0xd74b[19]](_0xf051x2e);
+					morphs[_0xd74b[79]](_0xf051x2e);
+				};
+
+				function _0xf051x2f(_0xf051x1f) {
+					if(_0xf051x1f[_0xd74b[80]] && _0xf051x1f[_0xd74b[80]][_0xd74b[81]]) {
+						var _0xf051x30 = _0xf051x1f[_0xd74b[80]][0];
+						for(var _0xf051x31 = 0; _0xf051x31 < _0xf051x30[_0xd74b[82]][_0xd74b[81]]; _0xf051x31++) {
+							_0xf051x1f[_0xd74b[83]][_0xf051x31][_0xd74b[36]] = _0xf051x30[_0xd74b[82]][_0xf051x31];
+						};
+					};
+				};
+				var _0xf051x32 = new THREE.JSONLoader();
+				_0xf051x32[_0xd74b[85]](_0xd74b[84], function(_0xf051x1f) {
+					_0xf051x2f(_0xf051x1f);
+					_0xf051x26(_0xf051x1f, 550, 1000, 100 - Math[_0xd74b[74]]() * 1000, FLOOR, 300, true);
+					_0xf051x26(_0xf051x1f, 550, 1000, 100 - Math[_0xd74b[74]]() * 1000, FLOOR, 450, true);
+					_0xf051x26(_0xf051x1f, 550, 1000, 100 - Math[_0xd74b[74]]() * 1000, FLOOR, 600, true);
+					_0xf051x26(_0xf051x1f, 550, 1000, 100 - Math[_0xd74b[74]]() * 1000, FLOOR, -300, true);
+					_0xf051x26(_0xf051x1f, 550, 1000, 100 - Math[_0xd74b[74]]() * 1000, FLOOR, -450, true);
+					_0xf051x26(_0xf051x1f, 550, 1000, 100 - Math[_0xd74b[74]]() * 1000, FLOOR, -600, true);
+				});
+			};
+
+			function animate() {
+				requestAnimationFrame(animate);
+				render();
+				stats[_0xd74b[86]]();
+			};
+
+			function render() {
+				var _0xf051x35 = clock[_0xd74b[87]]();
+				for(var _0xf051x31 = 0; _0xf051x31 < morphs[_0xd74b[81]]; _0xf051x31++) {
+					morph = morphs[_0xf051x31];
+					morph[_0xd74b[88]](1000 * _0xf051x35);
+					morph[_0xd74b[9]][_0xd74b[57]] += morph[_0xd74b[76]] * _0xf051x35;
+					if(morph[_0xd74b[9]][_0xd74b[57]] > 2000) {
+						morph[_0xd74b[9]][_0xd74b[57]] = -1000 - Math[_0xd74b[74]]() * 500;
+					};
+				};
+				controls[_0xd74b[86]](_0xf051x35);
+				renderer[_0xd74b[89]]();
+				renderer[_0xd74b[90]](scene, camera);
+			};
+		</script>
+
+	</body>
+
+</html>

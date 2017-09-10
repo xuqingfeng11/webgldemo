@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>WebGL中文网</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>body {
+				color: #fff;
+				font-family:Monospace;
+				font-size:13px;
+				text-align:center;
+				font-weight: bold;
+
+				background-color: #000;
+				margin: 0px;
+				overflow: hidden;
+		    }
+
+		    #info {
+				color:#fff;
+				position: relative;
+				margin: 0 auto -2.1em;
+				top: 0px;
+				width: 70em;
+
+				padding: 5px;
+				z-index:100;
+		    }
+
+		    a { color: skyblue; }
+
+			#stats { position: absolute; top:0; left: 0 }
+			#stats #fps { background: transparent !important }
+			#stats #fps #fpsText { color: #aaa !important }
+			#stats #fps #fpsGraph { display: none }
+		</style>
+	</head>
+
+	<body>
+		<div id="info">
+			<a href="http://hewebgl.com" target="_blank">WebGL中文网</a> 
+		</div>
+
+		<script src="js/three.min.js"></script>
+
+		<script src="js/controls/TrackballControls.js"></script>
+
+		<script src='js/MD2Character.js'></script>
+
+		<script src='js/Detector.js'></script>
+		<script src='js/libs/stats.min.js'></script>
+		<script src='js/libs/dat.gui.min.js'></script>
+
+		<script>
+
+			var _0x14a0=["\x77\x65\x62\x67\x6C","\x61\x64\x64\x47\x65\x74\x57\x65\x62\x47\x4C\x4D\x65\x73\x73\x61\x67\x65","\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68","\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74","\x64\x69\x76","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64","\x62\x6F\x64\x79","\x73\x65\x74","\x70\x6F\x73\x69\x74\x69\x6F\x6E","\x66\x6F\x67","\x61\x64\x64","\x63\x61\x73\x74\x53\x68\x61\x64\x6F\x77","\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x57\x69\x64\x74\x68","\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x48\x65\x69\x67\x68\x74","\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x44\x61\x72\x6B\x6E\x65\x73\x73","\x74\x65\x78\x74\x75\x72\x65\x73\x2F\x74\x65\x72\x72\x61\x69\x6E\x2F\x67\x72\x61\x73\x73\x6C\x69\x67\x68\x74\x2D\x62\x69\x67\x2E\x6A\x70\x67","\x6C\x6F\x61\x64\x54\x65\x78\x74\x75\x72\x65","\x49\x6D\x61\x67\x65\x55\x74\x69\x6C\x73","\x78","\x72\x6F\x74\x61\x74\x69\x6F\x6E","\x50\x49","\x72\x65\x70\x65\x61\x74","\x6D\x61\x70","\x6D\x61\x74\x65\x72\x69\x61\x6C","\x77\x72\x61\x70\x53","\x77\x72\x61\x70\x54","\x52\x65\x70\x65\x61\x74\x57\x72\x61\x70\x70\x69\x6E\x67","\x72\x65\x63\x65\x69\x76\x65\x53\x68\x61\x64\x6F\x77","\x73\x65\x74\x53\x69\x7A\x65","\x63\x6F\x6C\x6F\x72","\x73\x65\x74\x43\x6C\x65\x61\x72\x43\x6F\x6C\x6F\x72","\x64\x6F\x6D\x45\x6C\x65\x6D\x65\x6E\x74","\x67\x61\x6D\x6D\x61\x49\x6E\x70\x75\x74","\x67\x61\x6D\x6D\x61\x4F\x75\x74\x70\x75\x74","\x73\x68\x61\x64\x6F\x77\x4D\x61\x70\x45\x6E\x61\x62\x6C\x65\x64","\x72\x65\x73\x69\x7A\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x74\x61\x72\x67\x65\x74","\x73\x70\x65\x65\x64","\x73\x65\x74\x50\x6C\x61\x79\x62\x61\x63\x6B\x52\x61\x74\x65","\x6F\x6E\x43\x68\x61\x6E\x67\x65","\x77\x69\x72\x65\x66\x72\x61\x6D\x65","\x73\x65\x74\x57\x69\x72\x65\x66\x72\x61\x6D\x65","\x6D\x6F\x64\x65\x6C\x73\x2F\x61\x6E\x69\x6D\x61\x74\x65\x64\x2F\x72\x61\x74\x61\x6D\x61\x68\x61\x74\x74\x61\x2F","\x72\x61\x74\x61\x6D\x61\x68\x61\x74\x74\x61\x2E\x6A\x73","\x72\x61\x74\x61\x6D\x61\x68\x61\x74\x74\x61\x2E\x70\x6E\x67","\x63\x74\x66\x5F\x62\x2E\x70\x6E\x67","\x63\x74\x66\x5F\x72\x2E\x70\x6E\x67","\x64\x65\x61\x64\x2E\x70\x6E\x67","\x67\x65\x61\x72\x77\x68\x6F\x72\x65\x2E\x70\x6E\x67","\x77\x65\x61\x70\x6F\x6E\x2E\x6A\x73","\x77\x65\x61\x70\x6F\x6E\x2E\x70\x6E\x67","\x77\x5F\x62\x66\x67\x2E\x6A\x73","\x77\x5F\x62\x66\x67\x2E\x70\x6E\x67","\x77\x5F\x62\x6C\x61\x73\x74\x65\x72\x2E\x6A\x73","\x77\x5F\x62\x6C\x61\x73\x74\x65\x72\x2E\x70\x6E\x67","\x77\x5F\x63\x68\x61\x69\x6E\x67\x75\x6E\x2E\x6A\x73","\x77\x5F\x63\x68\x61\x69\x6E\x67\x75\x6E\x2E\x70\x6E\x67","\x77\x5F\x67\x6C\x61\x75\x6E\x63\x68\x65\x72\x2E\x6A\x73","\x77\x5F\x67\x6C\x61\x75\x6E\x63\x68\x65\x72\x2E\x70\x6E\x67","\x77\x5F\x68\x79\x70\x65\x72\x62\x6C\x61\x73\x74\x65\x72\x2E\x6A\x73","\x77\x5F\x68\x79\x70\x65\x72\x62\x6C\x61\x73\x74\x65\x72\x2E\x70\x6E\x67","\x77\x5F\x6D\x61\x63\x68\x69\x6E\x65\x67\x75\x6E\x2E\x6A\x73","\x77\x5F\x6D\x61\x63\x68\x69\x6E\x65\x67\x75\x6E\x2E\x70\x6E\x67","\x77\x5F\x72\x61\x69\x6C\x67\x75\x6E\x2E\x6A\x73","\x77\x5F\x72\x61\x69\x6C\x67\x75\x6E\x2E\x70\x6E\x67","\x77\x5F\x72\x6C\x61\x75\x6E\x63\x68\x65\x72\x2E\x6A\x73","\x77\x5F\x72\x6C\x61\x75\x6E\x63\x68\x65\x72\x2E\x70\x6E\x67","\x77\x5F\x73\x68\x6F\x74\x67\x75\x6E\x2E\x6A\x73","\x77\x5F\x73\x68\x6F\x74\x67\x75\x6E\x2E\x70\x6E\x67","\x77\x5F\x73\x73\x68\x6F\x74\x67\x75\x6E\x2E\x6A\x73","\x77\x5F\x73\x73\x68\x6F\x74\x67\x75\x6E\x2E\x70\x6E\x67","\x73\x63\x61\x6C\x65","\x6F\x6E\x4C\x6F\x61\x64\x43\x6F\x6D\x70\x6C\x65\x74\x65","\x6C\x6F\x61\x64\x50\x61\x72\x74\x73","\x72\x6F\x6F\x74","\x61\x73\x70\x65\x63\x74","\x75\x70\x64\x61\x74\x65\x50\x72\x6F\x6A\x65\x63\x74\x69\x6F\x6E\x4D\x61\x74\x72\x69\x78","\x2E","\x73\x70\x6C\x69\x74","\x6C\x65\x6E\x67\x74\x68","\x6A\x6F\x69\x6E","\x57\x65\x61\x70\x6F\x6E\x73","\x61\x64\x64\x46\x6F\x6C\x64\x65\x72","\x73\x65\x74\x57\x65\x61\x70\x6F\x6E","\x77\x65\x61\x70\x6F\x6E\x73","\x6E\x61\x6D\x65","\x53\x6B\x69\x6E\x73","\x73\x65\x74\x53\x6B\x69\x6E","\x73\x6B\x69\x6E\x73\x42\x6F\x64\x79","\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E\x73","\x73\x65\x74\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E","\x61\x6E\x69\x6D\x61\x74\x69\x6F\x6E\x73","\x67\x65\x6F\x6D\x65\x74\x72\x79","\x6D\x65\x73\x68\x42\x6F\x64\x79","\x75\x70\x64\x61\x74\x65","\x67\x65\x74\x44\x65\x6C\x74\x61","\x72\x65\x6E\x64\x65\x72"];if(!Detector[_0x14a0[0]]){Detector[_0x14a0[1]]();} ;var SCREEN_WIDTH=window[_0x14a0[2]];var SCREEN_HEIGHT=window[_0x14a0[3]];var container,camera,scene,renderer;var character;var gui,playbackConfig={speed:1.0,wireframe:false};var controls;var clock= new THREE.Clock();init();animate();function init(){container=document[_0x14a0[5]](_0x14a0[4]);document[_0x14a0[7]][_0x14a0[6]](container);camera= new THREE.PerspectiveCamera(40,window[_0x14a0[2]]/window[_0x14a0[3]],1,1000);camera[_0x14a0[9]][_0x14a0[8]](0,150,400);scene= new THREE.Scene();scene[_0x14a0[10]]= new THREE.Fog(0x050505,400,1000);scene[_0x14a0[11]]( new THREE.AmbientLight(0x222222));var _0x1409xd= new THREE.SpotLight(0xffffff,2,1000);_0x1409xd[_0x14a0[9]][_0x14a0[8]](200,250,500);_0x1409xd[_0x14a0[12]]=true;_0x1409xd[_0x14a0[13]]=1024;_0x1409xd[_0x14a0[14]]=1024;_0x1409xd[_0x14a0[15]]=0.95;scene[_0x14a0[11]](_0x1409xd);var _0x1409xd= new THREE.SpotLight(0xffffff,1.5,500);_0x1409xd[_0x14a0[9]][_0x14a0[8]](-100,350,250);_0x1409xd[_0x14a0[12]]=true;_0x1409xd[_0x14a0[13]]=1024;_0x1409xd[_0x14a0[14]]=1024;_0x1409xd[_0x14a0[15]]=0.95;scene[_0x14a0[11]](_0x1409xd);var _0x1409xe=THREE[_0x14a0[18]][_0x14a0[17]](_0x14a0[16]);var _0x1409xf= new THREE.PlaneGeometry(2000,2000);var _0x1409x10= new THREE.MeshPhongMaterial({color:0xffffff,map:_0x1409xe});var _0x1409x11= new THREE.Mesh(_0x1409xf,_0x1409x10);_0x1409x11[_0x14a0[20]][_0x14a0[19]]=-Math[_0x14a0[21]]/2;_0x1409x11[_0x14a0[24]][_0x14a0[23]][_0x14a0[22]][_0x14a0[8]](8,8);_0x1409x11[_0x14a0[24]][_0x14a0[23]][_0x14a0[25]]=_0x1409x11[_0x14a0[24]][_0x14a0[23]][_0x14a0[26]]=THREE[_0x14a0[27]];_0x1409x11[_0x14a0[28]]=true;scene[_0x14a0[11]](_0x1409x11);renderer= new THREE.WebGLRenderer({antialias:true});renderer[_0x14a0[29]](SCREEN_WIDTH,SCREEN_HEIGHT);renderer[_0x14a0[31]](scene[_0x14a0[10]][_0x14a0[30]],1);container[_0x14a0[6]](renderer[_0x14a0[32]]);renderer[_0x14a0[33]]=true;renderer[_0x14a0[34]]=true;renderer[_0x14a0[35]]=true;stats= new Stats();container[_0x14a0[6]](stats[_0x14a0[32]]);window[_0x14a0[37]](_0x14a0[36],onWindowResize,false);controls= new THREE.TrackballControls(camera,renderer[_0x14a0[32]]);controls[_0x14a0[38]][_0x14a0[8]](0,50,0);gui= new dat.GUI();gui[_0x14a0[11]](playbackConfig,_0x14a0[39],0,2)[_0x14a0[41]](function (){character[_0x14a0[40]](playbackConfig[_0x14a0[39]]);} );gui[_0x14a0[11]](playbackConfig,_0x14a0[42],false)[_0x14a0[41]](function (){character[_0x14a0[43]](playbackConfig[_0x14a0[42]]);} );var _0x1409x12={baseUrl:_0x14a0[44],body:_0x14a0[45],skins:[_0x14a0[46],_0x14a0[47],_0x14a0[48],_0x14a0[49],_0x14a0[50]],weapons:[[_0x14a0[51],_0x14a0[52]],[_0x14a0[53],_0x14a0[54]],[_0x14a0[55],_0x14a0[56]],[_0x14a0[57],_0x14a0[58]],[_0x14a0[59],_0x14a0[60]],[_0x14a0[61],_0x14a0[62]],[_0x14a0[63],_0x14a0[64]],[_0x14a0[65],_0x14a0[66]],[_0x14a0[67],_0x14a0[68]],[_0x14a0[69],_0x14a0[70]],[_0x14a0[71],_0x14a0[72]]]};character= new THREE.MD2Character();character[_0x14a0[73]]=3;character[_0x14a0[74]]=function (){setupSkinsGUI(character);setupWeaponsGUI(character);setupGUIAnimations(character);} ;character[_0x14a0[75]](_0x1409x12);scene[_0x14a0[11]](character[_0x14a0[76]]);} ;function onWindowResize(_0x1409x14){SCREEN_WIDTH=window[_0x14a0[2]];SCREEN_HEIGHT=window[_0x14a0[3]];renderer[_0x14a0[29]](SCREEN_WIDTH,SCREEN_HEIGHT);camera[_0x14a0[77]]=SCREEN_WIDTH/SCREEN_HEIGHT;camera[_0x14a0[78]]();} ;function labelize(_0x1409x16){var _0x1409x17=_0x1409x16[_0x14a0[80]](_0x14a0[79]);if(_0x1409x17[_0x14a0[81]]>1){_0x1409x17[_0x14a0[81]]-=1;return _0x1409x17[_0x14a0[82]](_0x14a0[79]);} ;return _0x1409x16;} ;function setupWeaponsGUI(character){var _0x1409x19=gui[_0x14a0[84]](_0x14a0[83]);var _0x1409x1a=function (_0x1409x1b){return function (){character[_0x14a0[85]](_0x1409x1b);} ;} ;var _0x1409x1c=[];for(var _0x1409x1d=0;_0x1409x1d<character[_0x14a0[86]][_0x14a0[81]];_0x1409x1d++){var _0x1409x1e=character[_0x14a0[86]][_0x1409x1d][_0x14a0[87]];playbackConfig[_0x1409x1e]=_0x1409x1a(_0x1409x1d);_0x1409x1c[_0x1409x1d]=_0x1409x19[_0x14a0[11]](playbackConfig,_0x1409x1e)[_0x14a0[87]](labelize(_0x1409x1e));} ;} ;function setupSkinsGUI(character){var _0x1409x19=gui[_0x14a0[84]](_0x14a0[88]);var _0x1409x1a=function (_0x1409x1b){return function (){character[_0x14a0[89]](_0x1409x1b);} ;} ;var _0x1409x1c=[];for(var _0x1409x1d=0;_0x1409x1d<character[_0x14a0[90]][_0x14a0[81]];_0x1409x1d++){var _0x1409x1e=character[_0x14a0[90]][_0x1409x1d][_0x14a0[87]];playbackConfig[_0x1409x1e]=_0x1409x1a(_0x1409x1d);_0x1409x1c[_0x1409x1d]=_0x1409x19[_0x14a0[11]](playbackConfig,_0x1409x1e)[_0x14a0[87]](labelize(_0x1409x1e));} ;} ;function setupGUIAnimations(character){var _0x1409x19=gui[_0x14a0[84]](_0x14a0[91]);var _0x1409x1a=function (_0x1409x21){return function (){character[_0x14a0[92]](_0x1409x21);} ;} ;var _0x1409x1d=0,_0x1409x1c=[];var _0x1409x22=character[_0x14a0[95]][_0x14a0[94]][_0x14a0[93]];for(var _0x1409x23 in _0x1409x22){playbackConfig[_0x1409x23]=_0x1409x1a(_0x1409x23);_0x1409x1c[_0x1409x1d]=_0x1409x19[_0x14a0[11]](playbackConfig,_0x1409x23,_0x1409x23);_0x1409x1d++;} ;} ;function animate(){requestAnimationFrame(animate);render();stats[_0x14a0[96]]();} ;function render(){var _0x1409x26=clock[_0x14a0[97]]();controls[_0x14a0[96]]();character[_0x14a0[96]](_0x1409x26);renderer[_0x14a0[98]](scene,camera);} ;
+
+		</script>
+
+	</body>
+</html>
